@@ -33,62 +33,17 @@ public class PlayerCtlr : MonoBehaviour {
         //moveDirection = new Vector3( 0.0f, 0.0f,0.0f);
     }
     void Update( ) {
-        //leftbutton=GameObject.Find("LeftButton");
-        //trigger=leftbutton.GetComponent<EventTrigger>();
-        //EventTrigger.Entry entry = new EventTrigger.Entry( );
-        //entry.eventID = EventTriggerType.PointerDown;
-        //entry.callback.AddListener( ( eventDate ) => { PushDown( ); } );
-        //trigger.triggers.Add( entry );
-        //entry.eventID = EventTriggerType.PointerUp;
-        //entry.callback.AddListener( ( eventDate ) => { PushUp( ); } );
-        //trigger.triggers.Add( entry );
-        ProcessInputs( );
-        if( Input.GetKeyDown(KeyCode.Space) ) {
-            Fire( );
-        }
-        //Time.deltaTime==60ïbä‘Ç≈1ÉtÉåÅ[ÉÄï‘ÇµÇƒÇ≠ÇÍÇÈ
-        cool_down_time -= Time.deltaTime;
+
+        ProcessInputs();
     }
-    public void PushDown( ) {
-        push = true;
-        }
-    public void PushUp( ) {
-        push=false;
-        }
     private void FixedUpdate( ) {
         Move( );
     }
     void ProcessInputs( ) {
-        //float moveX = Input.GetAxisRaw( "Horizontal" );
-        ////float moveY = Input.GetAxisRaw( "Vertical" );
-        //moveDirection = new Vector3( moveX, 0.0f, 0.0f );
         Debug.Log(push);
-        //if ( push && transform.position.x < 4.0f)
-        //{
-        //    transform.position += transform.right * speed * Time.deltaTime;
-        //}
-        if( push && transform.position.x > -4.0f ) {
-            transform.position -= transform.right * speed * Time.deltaTime;
-        }
     }
     private void Move( ) {
         //rb.velocity = new Vector3( moveDirection.x * moveSpeed, 0.0f );
-    }
-
-    private void Fire( ) {
-        if( cool_down_time <= 0 ) {
-            //instantiateÇÃë„ÇÌÇËÇÃä÷êî
-            GameObject obj = ObjPoolCtrl.GetPooledObjct( );
-            if( obj == null ) {
-                return;
-            }
-            //èeÇÃèäíËà íuéÊìæ
-            obj.transform.position = FirePosition.transform.position;
-            obj.transform.rotation = FirePosition.transform.rotation;
-            obj.SetActive( true );
-            //Instantiate(Gun,FirePosition.transform.position,FirePosition.transform.rotation);
-            cool_down_time = gun_distance;
-        }
     }
 
     void ChangeScene()
